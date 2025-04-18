@@ -220,6 +220,29 @@
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
+
+    .group:hover .group-hover\:block {
+    display: block;
+  }
+  
+  .group:hover .group-hover\:rotate-180 {
+    transform: rotate(180deg);
+  }
+  
+  /* Improve mobile experience for dropdown */
+  @media (max-width: 767px) {
+    .group-hover\:block {
+      position: static !important;
+      box-shadow: none;
+      margin-top: 0;
+      margin-left: 1rem;
+      background-color: transparent;
+    }
+    
+    .group-hover\:block li {
+      padding-left: 1rem;
+    }
+  }
   </style>
 </head>
 <body class="overflow-x-hidden">
@@ -264,6 +287,21 @@
         <li class="px-6 py-2 hover:bg-gray-700 transition duration-300"><a href="#skill" onclick="closeSidebarOnMobile()">Skill</a></li>
         <li class="px-6 py-2 hover:bg-gray-700 transition duration-300"><a href="#project" onclick="closeSidebarOnMobile()">Project</a></li>
         <li class="px-6 py-2 hover:bg-gray-700 transition duration-300"><a href="#contact" onclick="closeSidebarOnMobile()">Contact</a></li>
+        
+        <!-- Dropdown Menu -->
+        <li class="px-6 py-2 hover:bg-gray-700 transition duration-300 relative group">
+          <a href="#" class="flex items-center justify-between">
+            Multimedia
+            <i class="fas fa-chevron-down ml-2 group-hover:rotate-180 transition-transform duration-300"></i>
+          </a>
+          <ul class="hidden group-hover:block absolute left-0 mt-2 bg-gray-700 w-full rounded-md shadow-lg overflow-hidden z-50">
+            <li class="px-6 py-2 hover:bg-gray-600 transition duration-300"><a href="gambar.html" class="block w-full">Gambar</a></li>
+            <li class="px-6 py-2 hover:bg-gray-600 transition duration-300"><a href="font.html" class="block w-full">Font</a></li>
+            <li class="px-6 py-2 hover:bg-gray-600 transition duration-300"><a href="audio.html" class="block w-full">Audio</a></li>
+            <li class="px-6 py-2 hover:bg-gray-600 transition duration-300"><a href="video.html" class="block w-full">Video</a></li>
+            <li class="px-6 py-2 hover:bg-gray-600 transition duration-300"><a href="animasi.html" class="block w-full">Animasi</a></li>
+          </ul>
+        </li>
       </ul>
     </nav>
   </aside>
@@ -786,6 +824,23 @@
       document.body.classList.remove('overflow-hidden');
     } else {
       document.getElementById('sidebar').classList.add('-translate-x-full');
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // For mobile dropdown toggle
+    const dropdownToggle = document.querySelector('.group > a');
+    const dropdownMenu = document.querySelector('.group > ul');
+    
+    if (dropdownToggle && dropdownMenu) {
+      dropdownToggle.addEventListener('click', function(e) {
+        if (window.innerWidth < 768) {
+          e.preventDefault();
+          dropdownMenu.classList.toggle('hidden');
+          const icon = this.querySelector('i');
+          icon.classList.toggle('rotate-180');
+        }
+      });
     }
   });
   </script>

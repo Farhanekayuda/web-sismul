@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Font Teks - Farhan Eka Yuda</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+      /* Base Styles */
+      :root {
+        --primary: #4f46e5;
+        --primary-hover: #4338ca;
+        --primary-light: #c7d2fe;
+        --primary-dark: #3730a3;
+        --secondary: #10b981;
+        --secondary-hover: #059669;
+        --dark: #1f2937;
+        --gray-dark: #374151;
+        --gray: #6b7280;
+        --gray-light: #e5e7eb;
+        --white: #ffffff;
+        --black: #000000;
+        --danger: #ef4444;
+        --warning: #f59e0b;
+        --success: #10b981;
+        --transition: all 0.3s ease;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.7;
+      }
+
+      .container {
+        max-width: 1200px;
+      }
+
+      /* Text and Common Classes */
+      .text-primary {
+        color: var(--primary);
+      }
+
+      .bg-primary {
+        background-color: var(--primary);
+      }
+
+      /* Navigation Styles */
+      .logo {
+        background: linear-gradient(90deg, var(--dark) 0%, var(--primary) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: var(--transition);
+      }
+
+      .logo:hover {
+        background: linear-gradient(90deg, var(--primary) 0%, var(--dark) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .nav-item {
+        position: relative;
+        font-weight: 500;
+        color: var(--gray-dark);
+        transition: var(--transition);
+        padding-bottom: 5px;
+      }
+
+      .nav-item:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--primary);
+        transition: var(--transition);
+      }
+
+      .nav-item:hover {
+        color: var(--primary);
+      }
+
+      .nav-item:hover:after,
+      .nav-item.active:after {
+        width: 100%;
+      }
+
+      .nav-item.active {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .mobile-nav-item {
+        display: block;
+        padding: 0.5rem 0;
+        color: var(--gray-dark);
+        font-weight: 500;
+        transition: var(--transition);
+      }
+
+      .mobile-nav-item:hover,
+      .mobile-nav-item.active {
+        color: var(--primary);
+        padding-left: 0.5rem;
+      }
+
+      .mobile-nav-item.active {
+        font-weight: 600;
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        z-index: 60;
+        background-color: transparent;
+      }
+
+      .progress-bar {
+        height: 4px;
+        background: linear-gradient(to right, var(--primary), var(--secondary));
+        width: 0%;
+        box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+      }
+
+      /* Header Styles */
+      .header-bg {
+        background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .animated-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.2) 0%, transparent 30%),
+          radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.2) 0%, transparent 40%);
+        z-index: 1;
+        opacity: 0.7;
+      }
+
+      .scroll-btn {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--white);
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .scroll-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Font Cards */
+      .font-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        background: var(--white);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        position: relative;
+        margin-bottom: 2rem;
+        height: 100%;
+      }
+
+      .font-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .font-header {
+        padding: 1.5rem;
+        position: relative;
+        z-index: 1;
+        color: var(--white);
+      }
+
+      .font-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: inherit;
+        filter: blur(8px);
+        opacity: 0.2;
+        z-index: -1;
+      }
+
+      .font-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin: 0;
+        text-align: center;
+      }
+
+      .font-content {
+        padding: 1.5rem;
+      }
+
+      .font-sample {
+        background-color: var(--gray-light);
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .font-subtitle {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--gray-dark);
+      }
+
+      .font-description {
+        color: var(--gray);
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+      }
+
+      .font-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .pros, .cons {
+        background-color: var(--gray-light);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+
+      .pros h4, .cons h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .pros h4 {
+        color: var(--success);
+      }
+
+      .cons h4 {
+        color: var(--danger);
+      }
+
+      .pros h4 i, .cons h4 i {
+        margin-right: 0.5rem;
+      }
+
+      .pros p, .cons p {
+        font-size: 0.95rem;
+        color: var(--gray-dark);
+        margin: 0;
+      }
+
+      /* Font Header Colors */
+      .times-new-roman {
+        background: linear-gradient(to right, #3b82f6, #2563eb);
+      }
+
+      .palatino {
+        background: linear-gradient(to right, #10b981, #059669);
+      }
+
+      .garamond {
+        background: linear-gradient(to right, #f59e0b, #d97706);
+      }
+
+      .bodoni {
+        background: linear-gradient(to right, #6366f1, #4f46e5);
+      }
+
+      .helvetica {
+        background: linear-gradient(to right, #1d4ed8, #1e40af);
+      }
+
+      .univers {
+        background: linear-gradient(to right, #ef4444, #dc2626);
+      }
+
+      .calibri {
+        background: linear-gradient(to right, #b91c1c, #991b1b);
+      }
+
+      .arial {
+        background: linear-gradient(to right, #047857, #065f46);
+      }
+
+      .futura {
+        background: linear-gradient(to right, #7c3aed, #6d28d9);
+      }
+
+      .comic-sans {
+        background: linear-gradient(to right, #8b5cf6, #7c3aed);
+      }
+
+      /* Font Samples */
+      .times-sample {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      .palatino-sample {
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+      }
+
+      .garamond-sample {
+        font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+      }
+
+      .bodoni-sample {
+        font-family: "Bodoni MT", Didot, "Didot LT STD", "Book Antiqua", Garamond, "Times New Roman", serif;
+      }
+
+      .helvetica-sample {
+        font-family: Helvetica, Arial, sans-serif;
+      }
+
+      .univers-sample {
+        font-family: "Univers", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      .calibri-sample {
+        font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+      }
+
+      .arial-sample {
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+      }
+
+      .futura-sample {
+        font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+      }
+
+      .comic-sans-sample {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.9);
+        animation: fadeIn 0.3s;
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 2px solid rgba(79, 70, 229, 0.3);
+        border-radius: 8px;
+        animation: zoom 0.5s;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: var(--white);
+        font-size: 40px;
+        font-weight: bold;
+        transition: var(--transition);
+        z-index: 1001;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: var(--primary);
+        transform: rotate(90deg);
+      }
+
+      @keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 1}
+      }
+
+      @keyframes zoom {
+        from {transform: translate(-50%, -50%) scale(0)}
+        to {transform: translate(-50%, -50%) scale(1)}
+      }
+
+      /* Call to Action Section */
+      .cta-section {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 40%), 
+                    radial-gradient(circle at 70% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 40%);
+        z-index: 1;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--white);
+        color: var(--primary);
+        font-weight: 600;
+        border-radius: 0.5rem;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      .footer-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: var(--gray-light);
+        transition: var(--transition);
+      }
+
+      .footer-icon:hover {
+        background-color: var(--primary);
+        color: var(--white);
+        transform: translateY(-5px);
+      }
+
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 50;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-5px);
+      }
+
+      /* 3D Card Effect */
+      .font-card {
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .font-card:hover .font-content {
+        transform: translateZ(20px);
+      }
+
+      .font-card .font-content {
+        transition: transform 0.3s ease;
+        transform-origin: center center;
+      }
+
+      .font-sample {
+        position: relative;
+        overflow: hidden;
+        box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+      }
+
+      .font-sample::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(255,255,255,0.2) 0%,
+          rgba(255,255,255,0) 40%,
+          rgba(255,255,255,0) 60%,
+          rgba(255,255,255,0.2) 100%
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+        opacity: 0;
+      }
+
+      .font-card:hover .font-sample::before {
+        opacity: 1;
+        transform: rotate(45deg) translate(0%, 0%);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+        .font-details {
+          grid-template-columns: 1fr;
+        }
+        
+        .nav-item:after {
+          bottom: -2px;
+        }
+        
+        .cta-button {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .font-card {
+          margin-bottom: 2rem;
+        }
+        
+        .font-header {
+          padding: 1rem;
+        }
+        
+        .font-title {
+          font-size: 1.5rem;
+        }
+        
+        .font-content {
+          padding: 1rem;
+        }
+        
+        .font-sample {
+          min-height: 80px;
+          font-size: 1rem;
+        }
+        
+        .back-to-top {
+          bottom: 20px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Navbar Start -->
+    <nav class="fixed w-full z-50 bg-white shadow-md bg-opacity-90 backdrop-blur-sm">
+      <div class="container mx-auto px-6 py-3">
+        <div class="flex justify-between items-center">
+          <a href="index.html" class="text-2xl font-bold logo">Farhan<span class="text-primary">Eka</span></a>
+          
+          <!-- Mobile menu button -->
+          <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-primary focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+    
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex items-center space-x-6">
+            <div class="space-x-5">
+              <a href="gambar.html" class="nav-item">Gambar</a>
+              <a href="video.html" class="nav-item">Video</a>
+              <a href="audio.html" class="nav-item">Audio</a>
+              <a href="animasi.html" class="nav-item">Animasi</a>
+              <a href="font.html" class="nav-item active">Font</a>
+              <a href="index.html" class="nav-item">Beranda</a>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden">
+          <div class="flex flex-col space-y-4 mt-4 pb-4">
+            <a href="gambar.html" class="mobile-nav-item">Gambar</a>
+            <a href="video.html" class="mobile-nav-item">Video</a>
+            <a href="audio.html" class="mobile-nav-item">Audio</a>
+            <a href="animasi.html" class="mobile-nav-item">Animasi</a>
+            <a href="font.html" class="mobile-nav-item active">Font</a>
+            <a href="index.html" class="mobile-nav-item">Beranda</a>
+          </div>
+        </div>
+      </div>
+    </nav>    
+
+    <!-- Header -->
+    <header class="pt-28 pb-16 header-bg relative">
+      <div class="animated-bg"></div>
+      <div class="container mx-auto text-center px-4 relative z-10" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="text-5xl font-bold mb-6 text-white">Font <span class="text-primary">Teks</span></h1>
+        <p class="text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed">Berikut adalah 10 font populer yang umum digunakan</p>
+        <div class="flex justify-center mt-8">
+          <a href="#fonts" class="scroll-btn">
+            <i class="fas fa-arrow-down animate-bounce text-primary text-2xl"></i>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="fonts" class="py-16 bg-gray-50 relative">
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Font <span class="text-primary">Populer</span></h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Times New Roman -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+            <div class="font-header times-new-roman">
+              <h2 class="font-title">Times New Roman</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample times-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Serif Font</h3>
+              <p class="font-description">Dirancang untuk The Times of London pada tahun 1931. Salah satu font yang paling banyak digunakan di dunia.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Keterbacaan tinggi, elegan, formal</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Terkesan kuno, kurang cocok untuk digital</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Palatino -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+            <div class="font-header palatino">
+              <h2 class="font-title">Palatino</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample palatino-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Serif Font</h3>
+              <p class="font-description">Dirancang oleh Hermann Zapf pada tahun 1949, terinspirasi oleh tulisan tangan Renaissance Italia.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Elegan, keterbacaan tinggi, tampak klasik</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Kurang cocok untuk teks berukuran kecil</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Garamond -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+            <div class="font-header garamond">
+              <h2 class="font-title">Garamond</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample garamond-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Serif Font</h3>
+              <p class="font-description">Font klasik Prancis dari abad ke-16, dinamai menurut pencetak Claude Garamond.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Hemat tinta, elegan, sangat mudah dibaca</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Kurang cocok untuk judul besar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bodoni -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+            <div class="font-header bodoni">
+              <h2 class="font-title">Bodoni</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample bodoni-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Serif Font</h3>
+              <p class="font-description">Dirancang oleh Giambattista Bodoni pada akhir abad ke-18, terkenal dengan kontras tebal-tipis yang dramatis.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Mewah, dramatis, cocok untuk judul</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Sulit dibaca dalam ukuran kecil</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Helvetica -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="500">
+            <div class="font-header helvetica">
+              <h2 class="font-title">Helvetica</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample helvetica-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Sans Serif Font</h3>
+              <p class="font-description">Dirancang oleh Max Miedinger pada tahun 1957, menjadi salah satu font sans-serif paling populer di dunia.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Sangat mudah dibaca, netral, universal</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Terlalu umum, kurang karakter unik</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Univers -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+            <div class="font-header univers">
+              <h2 class="font-title">Univers</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample univers-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Sans Serif Font</h3>
+              <p class="font-description">Dirancang oleh Adrian Frutiger pada tahun 1954, memiliki berbagai variasi bobot dan lebar.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Fleksibel, konsisten, mudah dibaca</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Kurang emosional, terkesan formal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Calibri -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="700">
+            <div class="font-header calibri">
+              <h2 class="font-title">Calibri</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample calibri-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Sans Serif Font</h3>
+              <p class="font-description">Dirancang oleh Lucas de Groot pada tahun 2002, menjadi font default Microsoft Office sejak 2007.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Modern, ramah, sangat mudah dibaca di layar</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Terlalu biasa, kurang cocok untuk desain formal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arial -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
+            <div class="font-header arial">
+              <h2 class="font-title">Arial</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample arial-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Sans Serif Font</h3>
+              <p class="font-description">Dirancang pada tahun 1982 untuk IBM, sering dianggap sebagai alternatif untuk Helvetica.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Sangat tersedia, mudah dibaca, netral</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Dianggap membosankan, kurang karakter</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Futura -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="900">
+            <div class="font-header futura">
+              <h2 class="font-title">Futura</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample futura-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Sans Serif Font</h3>
+              <p class="font-description">Dirancang oleh Paul Renner pada tahun 1927, contoh sempurna dari estetika Bauhaus dan Art Deco.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Modern, geometris, elegansi abadi</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Tidak ideal untuk teks panjang</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comic Sans -->
+          <div class="font-card" data-aos="fade-up" data-aos-duration="800" data-aos-delay="1000">
+            <div class="font-header comic-sans">
+              <h2 class="font-title">Comic Sans</h2>
+            </div>
+            <div class="font-content">
+              <div class="font-sample comic-sans-sample">
+                The quick brown fox jumps over the lazy dog.
+              </div>
+              <h3 class="font-subtitle">Display Font</h3>
+              <p class="font-description">Dirancang oleh Vincent Connare pada tahun 1994 untuk Microsoft, terinspirasi oleh tulisan tangan komik.</p>
+              <div class="font-details">
+                <div class="pros">
+                  <h4><i class="fas fa-plus-circle"></i> Kelebihan</h4>
+                  <p>Ramah, santai, mudah dibaca</p>
+                </div>
+                <div class="cons">
+                  <h4><i class="fas fa-minus-circle"></i> Kekurangan</h4>
+                  <p>Dianggap tidak profesional, overused</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Call to Action -->
+    <section class="py-16 cta-section text-center text-white relative">
+      <div class="container mx-auto px-4 relative z-10">
+        <h2 class="text-3xl font-bold mb-6" data-aos="fade-up">Ingin mempelajari lebih lanjut?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="200">Jelajahi format media lainnya untuk memperluas pengetahuan multimedia Anda</p>
+        <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
+          <a href="video.html" class="cta-button"><i class="fas fa-picture mr-2"></i> Format Gambar</a>
+          <a href="audio.html" class="cta-button"><i class="fas fa-music mr-2"></i> Format Audio</a>
+          <a href="animasi.html" class="cta-button"><i class="fas fa-film mr-2"></i> Format Animasi</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 text-center text-white">
+      <div class="container mx-auto px-4">
+        <div class="flex justify-center space-x-8 mb-8" data-aos="fade-up">
+          <a href="" target="_blank" class="footer-icon">
+            <i class="fab fa-github text-2xl"></i>
+          </a>
+          <a href="https://instagram.com/aan_yud" target="_blank" class="footer-icon">
+            <i class="fab fa-instagram text-2xl"></i>
+          </a>
+          <a href=" target="_blank" class="footer-icon">
+            <i class="fab fa-linkedin text-2xl"></i>
+          </a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">Tentang</h3>
+            <p class="text-gray-400">Website ini dibuat sebagai sumber informasi tentang berbagai format media digital.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Navigasi</h3>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="index.html" class="hover:text-primary transition">Beranda</a></li>
+              <li><a href="gambar.html" class="hover:text-primary transition">Format Gambar</a></li>
+              <li><a href="video.html" class="hover:text-primary transition">Format Video</a></li>
+              <li><a href="audio.html" class="hover:text-primary transition">Format Audio</a></li>
+              <li><a href="animasi.html" class="hover:text-primary transition">Format Animasi</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Kontak</h3>
+            <p class="text-gray-400">Jika ada pertanyaan, silahkan hubungi kami melalui email atau media sosial.</p>
+            <p class="text-primary mt-2">info@farhaneka.com</p>
+          </div>
+        </div>
+        <div class="pt-8 border-t border-gray-800">
+          <p class="text-gray-400">© 2025 Farhan Eka Yuda</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="back-to-top" class="back-to-top" title="Kembali ke atas">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+      // Initialize AOS animation library
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        offset: 100
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+      
+      // Modal functionality
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      
+      const images = document.getElementsByClassName("image-container");
+      
+      for (let i = 0; i < images.length; i++) {
+        images[i].onclick = function() {
+          const img = this.querySelector(".format-image");
+          modal.style.display = "block";
+          modalImg.src = img.src;
+          document.body.style.overflow = "hidden"; // Prevent scrolling when modal is open
+        }
+      }
+      
+      if (closeBtn) {
+        closeBtn.onclick = function() {
+          closeModal();
+        }
+      }
+      
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          closeModal();
+        }
+      }
+      
+      // Close modal with escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape" && modal.style.display === "block") {
+          closeModal();
+        }
+      });
+      
+      function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      }
+      
+      // Progress bar
+      function updateProgressBar() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        const progressBar = document.getElementById("progress-bar");
+        if (progressBar) {
+          progressBar.style.width = scrolled + "%";
+        }
+      }
+      
+      window.addEventListener('scroll', updateProgressBar);
+      
+      // Back to top button
+      const backToTopButton = document.getElementById("back-to-top");
+      
+      if (backToTopButton) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopButton.classList.add("show");
+          } else {
+            backToTopButton.classList.remove("show");
+          }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+      
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === "#") return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 70, // Adjust for header height
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+            }
+          }
+        });
+      });
+      
+      // Add card hover effect with mouse movement
+      const cards = document.querySelectorAll('.format-card');
+      
+      cards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left; // x position within the element
+          const y = e.clientY - rect.top;  // y position within the element
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const deltaX = (x - centerX) / 20;
+          const deltaY = (y - centerY) / 20;
+          
+          card.style.transform = `translateY(-10px) rotateY(${deltaX}deg) rotateX(${-deltaY}deg)`;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          card.style.transform = '';
+          setTimeout(() => {
+            card.style.transition = 'transform 0.3s ease';
+          }, 100);
+        });
+        
+        card.addEventListener('mouseenter', function() {
+          card.style.transition = 'transform 0.1s ease';
+        });
+      });
+      
+      // Add active class to current page in navigation
+      const currentLocation = window.location.pathname;
+      const navLinks = document.querySelectorAll('.nav-item, .mobile-nav-item');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentLocation.split('/').pop()) {
+          link.classList.add('active');
+        }
+      });
+      
+      // Preloader (optional)
+      window.addEventListener('load', function() {
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+          preloader.classList.add('preloader-finish');
+          setTimeout(() => {
+            preloader.style.display = 'none';
+          }, 500);
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
